@@ -14,6 +14,8 @@ export class ProjectsController {
     @Query('status') status: string = '', //work
     @Query('priority') priority: string = '', //-!
     @Query('furnishing') furnishing: string = '', //work
+    @Query('min') minrangePrice: string = '', //work
+    @Query('max') maxrangePrice: string = '', //work
   ) {
     const skip = page ? (parseInt(page) - 1) * parseInt(perPage || '24') : 0;
     const take = perPage ? parseInt(perPage) : 24;
@@ -27,6 +29,8 @@ export class ProjectsController {
         Status: { contains: status },
         Priority: priorityValues.length ? { in: priorityValues } : undefined,
         Furnishing: { contains: furnishing },
+        Price_from_AED: { contains: minrangePrice },
+        Price_to_AED: { contains: maxrangePrice },
       },
       skip,
       take,
