@@ -28,6 +28,7 @@ model Projects {
   Floors         String?
   Furnishing     String?
   Unit_bedrooms   String?
-  Price_from_AED  String    // Змінено з String на Int
-  Price_to_AED    String    // Змінено з String на Int
+  Price_from_AED  String    
+  Price_to_AED    String    
+  Cover_URL    String    
 }
