@@ -14,18 +14,16 @@ export class ProjectsController {
     @Query('status') status: string = '', //work
     @Query('priority') priority: string = '', //-!
     @Query('bedrooms') bedrooms: string = '',  //work
-    // @Query('priceRange') priceRange: string = '', 
+    @Query('priceRange') priceRange: string = '', 
     @Query('furnishing') furnishing: string = '',  //work
     // @Query('coordinates') coordinates: string = '',
   ) {
     const skip = (page - 1) * perPage; 
     const take = perPage; 
 
-    // let [minPrice, maxPrice] = priceRange.split(',').map(Number);
-    const bedroomList = bedrooms.split(',').map(Number);
-    const priorityValues = priority ? priority.split(',') : []; // Перетворюємо рядок на масив, якщо параметр заданий
-
-    const bedroomsValues = bedrooms ? bedrooms.split(',') : []; // Перетворюємо рядок на масив, якщо параметр заданий
+    const priorityValues = priority ? priority.split(',') : []; // 
+    const [minPrice, maxPrice] = priceRange ? priceRange.split(',').map(Number) : [0, Infinity];
+    const bedroomsValues = bedrooms ? bedrooms.split(',') : []; 
 
 
     // const [latitude, longitude] = coordinates.split(',').map(parseFloat);
@@ -40,8 +38,10 @@ export class ProjectsController {
         Status: { contains: status },
         Priority: priorityValues.length ? { in: priorityValues } : undefined, 
         Unit_bedrooms: bedroomsValues.length ? { in: bedroomsValues } : undefined,
-        // Price_from_AED: { gte: minPrice },
-        // Price_to_AED: { lte: maxPrice },
+        AND: [
+          { Price_from_AED: { gte: minPrice.toString() } },
+          { Price_to_AED: { lte: maxPrice.toString() } },
+        ],
         Furnishing: { contains: furnishing }
         // Coordinates: coordinatesFilter,
       },
