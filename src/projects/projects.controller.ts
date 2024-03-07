@@ -7,22 +7,22 @@ export class ProjectsController {
 
   @Get()
   async getProjects(
-    @Query('page') page: number = 1,//work
-    @Query('perPage') perPage: number = 24, //work
+    @Query('page') page: string, 
+  @Query('perPage') perPage: string,
     @Query('search') search: string = '',//work
     @Query('regions') regions: string = '', //work
     @Query('status') status: string = '', //work
     @Query('priority') priority: string = '', //-!
     @Query('bedrooms') bedrooms: string = '',  //work
-    @Query('priceRange') priceRange: string = '', 
+    // @Query('priceRange') priceRange: string = '', 
     @Query('furnishing') furnishing: string = '',  //work
     // @Query('coordinates') coordinates: string = '',
   ) {
-    const skip = (page - 1) * perPage; 
-    const take = perPage; 
+    const skip = page ? (parseInt(page) - 1) * parseInt(perPage || '24') : 0; 
+    const take = perPage ? parseInt(perPage) : 24; 
 
     const priorityValues = priority ? priority.split(',') : []; // 
-    const [minPrice, maxPrice] = priceRange ? priceRange.split(',').map(Number) : [0, Infinity];
+    // const [minPrice, maxPrice] = priceRange ? priceRange.split(',').map(Number) : [undefined, undefined];
     const bedroomsValues = bedrooms ? bedrooms.split(',') : []; 
 
 
@@ -38,10 +38,10 @@ export class ProjectsController {
         Status: { contains: status },
         Priority: priorityValues.length ? { in: priorityValues } : undefined, 
         Unit_bedrooms: bedroomsValues.length ? { in: bedroomsValues } : undefined,
-        AND: [
-          { Price_from_AED: { gte: minPrice.toString() } },
-          { Price_to_AED: { lte: maxPrice.toString() } },
-        ],
+        // AND: [
+        //   { Price_from_AED: { gte: minPrice.toString() } },
+        //   { Price_to_AED: { lte: maxPrice.toString() } },
+        // ],
         Furnishing: { contains: furnishing }
         // Coordinates: coordinatesFilter,
       },
