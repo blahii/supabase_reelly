@@ -12,6 +12,7 @@ export class ProjectsController {
     @Query('search') search: string = '',
     @Query('regions') regions: string = '',
     @Query('status') status: string = '',
+    @Query('developer') developer: string = '',
     @Query('priority') priority: string = '',
     @Query('furnishing') furnishing: string = '',
     @Query('min') minrangePrice: string = '',
@@ -25,6 +26,7 @@ export class ProjectsController {
 
     const whereClause = {
       Project_name: { contains: search },
+      Developers_name: { contains: developer },
       Region: regionsValues.length ? { in: regionsValues } : undefined,
       Status: { contains: status },
       Priority: priorityValues.length ? { in: priorityValues } : undefined,
