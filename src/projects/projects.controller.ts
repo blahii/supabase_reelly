@@ -21,11 +21,13 @@ export class ProjectsController {
     const take = perPage ? parseInt(perPage) : 24;
 
     const priorityValues = priority ? priority.split(',') : []; //
+    const regionsValues = regions ? regions.split(',') : []; //
+
 
     const projects = await this.prisma.projects.findMany({
       where: {
         Project_name: { contains: search },
-        Region: { contains: regions },
+        Region: regionsValues.length ? { in: regionsValues } : undefined,
         Status: { contains: status },
         Priority: priorityValues.length ? { in: priorityValues } : undefined,
         Furnishing: { contains: furnishing },
