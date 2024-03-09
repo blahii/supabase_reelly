@@ -21,12 +21,13 @@ export class ProjectsController {
     const skip = page ? (parseInt(page) - 1) * parseInt(perPage || '24') : 0;
     const take = perPage ? parseInt(perPage) : 24;
 
+    const developerName = developer ? developer.split(',') : [];
     const priorityValues = priority ? priority.split(',') : [];
     const regionsValues = regions ? regions.split(',') : [];
 
     const whereClause = {
       Project_name: { contains: search },
-      Developers_name: { contains: developer },
+      Developers_name: developerName.length ? { in: developerName } : undefined,
       Region: regionsValues.length ? { in: regionsValues } : undefined,
       Status: { contains: status },
       Priority: priorityValues.length ? { in: priorityValues } : undefined,
