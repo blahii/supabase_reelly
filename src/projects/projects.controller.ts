@@ -11,7 +11,8 @@ export class ProjectsController {
     @Query('perPage') perPage: string,
     @Query('search') search: string = '',
     @Query('regions') regions: string = '',
-    @Query('area') area: string = '',
+    @Query('units_types') units_types: string = '',
+    @Query('area_name') name: string = '',
     @Query('status') status: string = '',
     @Query('developer') developer: string = '',
     @Query('priority') priority: string = '',
@@ -25,13 +26,14 @@ export class ProjectsController {
     const developerName = developer ? developer.split(',') : [];
     const priorityValues = priority ? priority.split(',') : [];
     const regionsValues = regions ? regions.split(',') : [];
-    const areaValues = area ? area.split(',') : [];
+    const areaValues = units_types ? units_types.split(',') : [];
 
     const whereClause = {
       Project_name: { contains: search },
       Developers_name: developerName.length ? { in: developerName } : undefined,
       Region: regionsValues.length ? { in: regionsValues } : undefined,
-      Area_name: areaValues.length ? { in: areaValues } : undefined,
+      Units_types: areaValues.length ? { in: areaValues } : undefined,
+      Area_name: { contains: name },
       Status: { contains: status },
       Priority: priorityValues.length ? { in: priorityValues } : undefined,
       Furnishing: { contains: furnishing },
