@@ -25,6 +25,7 @@ export class ProjectsController {
 
     const developerName = developer ? developer.split(',') : [];
     const priorityValues = priority ? priority.split(',') : [];
+    const statusValues = status ? status.split(',') : [];
     const regionsValues = regions ? regions.split(',') : [];
     const areaValues = units_types ? units_types.split(',') : [];
 
@@ -34,7 +35,7 @@ export class ProjectsController {
       Region: regionsValues.length ? { in: regionsValues } : undefined,
       Units_types: areaValues.length ? { in: areaValues } : undefined,
       Area_name: { contains: name },
-      Status: { contains: status },
+      Status: statusValues.length ? { in: statusValues } : undefined,
       Priority: priorityValues.length ? { in: priorityValues } : undefined,
       Furnishing: { contains: furnishing },
       Price_from_AED: { contains: minrangePrice },
