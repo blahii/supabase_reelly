@@ -4,7 +4,6 @@ import { PrismaService } from '../services/prisma/prisma.service';
 @Controller('projects')
 export class ProjectsController {
   constructor(private prisma: PrismaService) {}
-
   @Get()
   async getProjects(
     @Query('page') page: string,
@@ -22,13 +21,11 @@ export class ProjectsController {
   ) {
     const skip = page ? (parseInt(page) - 1) * parseInt(perPage || '24') : 0;
     const take = perPage ? parseInt(perPage) : 24;
-
     const developerName = developer ? developer.split(',') : [];
     const priorityValues = priority ? priority.split(',') : [];
     const statusValues = status ? status.split(',') : [];
     const regionsValues = regions ? regions.split(',') : [];
     const areaValues = units_types ? units_types.split(',') : [];
-
     const whereClause = {
       Project_name: { contains: search },
       Developers_name: developerName.length ? { in: developerName } : undefined,
@@ -41,7 +38,6 @@ export class ProjectsController {
       Price_from_AED: { contains: minrangePrice },
       Price_to_AED: { contains: maxrangePrice },
     };
-
     const projects = await this.prisma.projects.findMany({
       where: whereClause,
       skip,
