@@ -17,11 +17,26 @@ datasource db {
 model Projects {
   id                 String   @id
   Completion_date    String?
+  Coordinates        String?
+  Project_name       String?
+  Developers_name    String?
+  Area_name          String?
+  Region             String?
+  Publish            String?
+  Status             String?
+  Priority           String?
+  Floors             String?
+  Furnishing         String?
+  Price_from_AED     String?    
+  Price_to_AED       String?   
+  Cover_URL          String?  
   Year               String?    
   Quarter            String?  
   Month              String? 
+  Units_types        String?
   Data_All           String?   
   TwoBedroom         String?  
+  Studio             String?  
   SixBedroom         String?  
   OneBedroomPool     String?  
   OneBedroom         String?  
@@ -37,20 +52,6 @@ model Projects {
   FiveBedroom        String?  
   ThreeBedroomPool   String?  
   TwoAndHalfBedroom  String?  
-  Studio             String?  
   OneAndHalfBedroom  String?  
   ThreeAndHalfBedroom String?  
-  Coordinates        String?
-  Project_name       String?
-  Developers_name    String?
-  Area_name          String?
-  Region             String?
-  Publish            String?
-  Status             String?
-  Priority           String?
-  Floors             String?
-  Furnishing         String?
-  Price_from_AED     String?    
-  Price_to_AED       String?   
-  Cover_URL          String?  
 }
