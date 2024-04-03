@@ -15,20 +15,41 @@ datasource db {
 }
 
 model Projects {
-  id             String      @id
-  Completion_date String?
-  Coordinates    String?
-  Project_name    String?
-  Developers_name String?
-  Area_name       String?
-  Region         String?
-  Publish        Boolean?
-  Status         String?
-  Priority       String?
-  Floors         String?
-  Furnishing     String?
-  Unit_bedrooms   String?
-  Price_from_AED  String?    
-  Price_to_AED    String?   
-  Cover_URL    String?    
+  id                 String   @id
+  Completion_date    String?
+  Year               String?    
+  Quarter            String?  
+  Month              String?  
+  TwoBedroom         Boolean?   // 2 bedroom
+  SixBedroom         Boolean?   // 6 bedroom
+  OneBedroomPool     Boolean?   // 1 bedroom + pool
+  OneBedroom         Boolean?   // 1 bedroom
+  FourBedroom        Boolean?   // 4 bedroom
+  ThreeBedroom       Boolean?   // 3 bedroom
+  MergedStudios      Boolean?   // Merged Studios
+  TwoBedroomPool     Boolean?   // 2 bedroom + Pool
+  EightBedroom       Boolean?   // 8 bedroom
+  NineBedroom        Boolean?   // 9 bedroom
+  SevenBedroom       Boolean?   // 7 bedroom
+  TwoBedroomPlusPool Boolean?   // 2 bedroom + pool (повторяется, возможно, имелся в виду другой тип)
+  StudioPool         Boolean?   // Studio + Pool
+  FiveBedroom        Boolean?   // 5 bedroom
+  ThreeBedroomPool   Boolean?   // 3 bedroom + pool
+  TwoAndHalfBedroom  Boolean?   // 2,5 bedroom
+  Studio             Boolean?   // Studio
+  OneAndHalfBedroom  Boolean?   // 1,5 bedroom
+  ThreeAndHalfBedroom Boolean?  // 3,5 bedroom
+  Coordinates        String?
+  Project_name       String?
+  Developers_name    String?
+  Area_name          String?
+  Region             String?
+  Publish            String?
+  Status             String?
+  Priority           String?
+  Floors             String?
+  Furnishing         String?
+  Price_from_AED     String?    
+  Price_to_AED       String?   
+  Cover_URL          String?  
 }
