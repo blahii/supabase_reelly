@@ -19,7 +19,8 @@ model Projects {
   Completion_date    String?
   Year               String?    
   Quarter            String?  
-  Month              String?  
+  Month              String? 
+  Data_All           String?   
   TwoBedroom         String?  
   SixBedroom         String?  
   OneBedroomPool     String?  
