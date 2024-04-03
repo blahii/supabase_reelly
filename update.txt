@@ -12,16 +12,16 @@ export class ProjectsController {
     @Query('regions') regions: string = '',
     @Query('units_types') units_types: string = '',
     @Query('area_name') name: string = '',
-    @Query('display_all') dispall: string = '',
     @Query('status') status: string = '',
     @Query('developer') developer: string = '',
     @Query('priority') priority: string = '',
     @Query('furnishing') furnishing: string = '',
     @Query('min') minrangePrice: string = '',
     @Query('max') maxrangePrice: string = '',
-    @Query('year') year: string = '',
-    @Query('quarter') quarter: string = '',
-    @Query('month') month: string = '',
+    @Query('year') year: string,
+    @Query('quarter') quarter: string,
+    @Query('month') month: string,
+    @Query('display_all') dispall: string = '',
     @Query('twoBedroom') twoBedroom: string,
     @Query('sixBedroom') sixBedroom: string,
     @Query('oneBedroomPool') oneBedroomPool: string,
@@ -42,15 +42,14 @@ export class ProjectsController {
     @Query('threeAndHalfBedroom') threeAndHalfBedroom: string,
 
   ) {
-    const skip = page ? (parseInt(page) - 1) * parseInt(perPage || '24') : 0;
-    const take = perPage ? parseInt(perPage) : 24;
+    const skip = parseInt(page, 10) ? (parseInt(page, 10) - 1) * parseInt(perPage || '24', 10) : 0;
+    const take = parseInt(perPage, 10) || 24;
     const developerName = developer ? developer.split(',') : [];
     const priorityValues = priority ? priority.split(',') : [];
     const statusValues = status ? status.split(',') : [];
     const regionsValues = regions ? regions.split(',') : [];
     const areaValues = units_types ? units_types.split(',') : [];
     const whereClause = {
-     
       Project_name: { contains: search },
       Developers_name: developerName.length ? { in: developerName } : undefined,
       Region: regionsValues.length ? { in: regionsValues } : undefined,
@@ -61,30 +60,33 @@ export class ProjectsController {
       Furnishing: { contains: furnishing },
       Price_from_AED: { contains: minrangePrice },
       Price_to_AED: { contains: maxrangePrice },
-      Year: year ,  // Задаємо undefined, якщо параметр пустий
+      Year:  year ,  
       Quarter: quarter,
       Month: month,
       Display_all: dispall,
-      ...(twoBedroom === 'true' && { TwoBedroom: { not: 'false' } }),
-      ...(sixBedroom === 'true' && { SixBedroom: { not: 'false' } }),
-      ...(oneBedroomPool === 'true' && { OneBedroomPool: { not: '' } }),
-      ...(oneBedroom === 'true' && { OneBedroom: { not: 'false' } }),
-      ...(fourBedroom === 'true' && { FourBedroom: { not: 'false' } }),
-      ...(threeBedroom === 'true' && { ThreeBedroom: { not: 'false' } }),
-      ...(mergedStudios === 'true' && { MergedStudios: { not: 'false' } }),
-      ...(twoBedroomPool === 'true' && { TwoBedroomPool: { not: 'false' } }),
-      ...(eightBedroom === 'true' && { EightBedroom: { not: 'false' } }),
-      ...(nineBedroom === 'true' && { NineBedroom: { not: 'false' } }),
-      ...(sevenBedroom === 'true' && { SevenBedroom: { not: 'false' } }),
-      ...(studioPool === 'true' && { StudioPool: { not: 'false' } }),
-      ...(fiveBedroom === 'true' && { FiveBedroom: { not: 'false' } }),
-      ...(threeBedroomPool === 'true' && { ThreeBedroomPool: { not: 'false' } }),
-      ...(twoAndHalfBedroom === 'true' && { TwoAndHalfBedroom: { not: 'false' } }),
-      ...(studio === 'true' && { Studio: { not: 'false' } }),
-      ...(oneAndHalfBedroom === 'true' && { OneAndHalfBedroom: { not: 'false' } }),
-      ...(threeAndHalfBedroom === 'true' && { ThreeAndHalfBedroom: { not: 'false' } }),
+      TwoBedroom: twoBedroom,
+      SixBedroom: sixBedroom,
+      OneBedroomPool: oneBedroomPool,
+      OneBedroom: oneBedroom,
+      FourBedroom: fourBedroom,
+      ThreeBedroom: threeBedroom,
+      MergedStudios: mergedStudios,
+      TwoBedroomPool: twoBedroomPool,
+      EightBedroom: eightBedroom,
+      NineBedroom: nineBedroom,
+      SevenBedroom: sevenBedroom,
+      StudioPool: studioPool,
+      FiveBedroom: fiveBedroom,
+      ThreeBedroomPool: threeBedroomPool,
+      TwoAndHalfBedroom: twoAndHalfBedroom,
+      Studio: studio,
+      OneAndHalfBedroom: oneAndHalfBedroom,
+      ThreeAndHalfBedroom: threeAndHalfBedroom
+
 
     };
+
+
 
     const projects = await this.prisma.projects.findMany({
       where: whereClause,
@@ -99,4 +101,65 @@ export class ProjectsController {
 
     return { projects, totalCount };
   }
+}
+
+
+
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  directUrl         = env("DIRECT_URL")
+}
+
+model Projects {
+  id                 String   @id
+  Completion_date    String?
+  Coordinates        String?
+  Project_name       String?
+  Developers_name    String?
+  Area_name          String?
+  Region             String?
+  Publish            String?
+  Status             String?
+  Priority           String?
+  Floors             String?
+  Furnishing         String?
+  Price_from_AED     String?    
+  Price_to_AED       String?   
+  Cover_URL          String?  
+  Year               String?    
+  Quarter            String?  
+  Month              String? 
+  Units_types        String?
+  Data_All           String?   
+  TwoBedroom         String?  
+  Studio             String?  
+  SixBedroom         String?  
+  OneBedroomPool     String?  
+  OneBedroom         String?  
+  FourBedroom        String?  
+  ThreeBedroom       String?  
+  MergedStudios      String?  
+  TwoBedroomPool     String?  
+  EightBedroom       String?  
+  NineBedroom        String?  
+  SevenBedroom       String?  
+  TwoBedroomPlusPool String?  
+  StudioPool         String?  
+  FiveBedroom        String?  
+  ThreeBedroomPool   String?  
+  TwoAndHalfBedroom  String?  
+  OneAndHalfBedroom  String?  
+  ThreeAndHalfBedroom String?  
 }
