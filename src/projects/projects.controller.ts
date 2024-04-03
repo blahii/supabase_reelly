@@ -64,30 +64,28 @@ export class ProjectsController {
       Furnishing: { contains: furnishing },
       Price_from_AED: { contains: minrangePrice },
       Price_to_AED: { contains: maxrangePrice },
-      ...(twoBedroom === 'true' && { TwoBedroom: { not: 'false' } }),
-      ...(sixBedroom === 'true' && { SixBedroom: { not: 'false' } }),
-      ...(oneBedroomPool === 'true' && { OneBedroomPool: { not: '' } }),
-      ...(oneBedroom === 'true' && { OneBedroom: { not: 'false' } }),
-      ...(fourBedroom === 'true' && { FourBedroom: { not: 'false' } }),
-      ...(threeBedroom === 'true' && { ThreeBedroom: { not: 'false' } }),
-      ...(mergedStudios === 'true' && { MergedStudios: { not: 'false' } }),
-      ...(twoBedroomPool === 'true' && { TwoBedroomPool: { not: 'false' } }),
-      ...(eightBedroom === 'true' && { EightBedroom: { not: 'false' } }),
-      ...(nineBedroom === 'true' && { NineBedroom: { not: 'false' } }),
-      ...(sevenBedroom === 'true' && { SevenBedroom: { not: 'false' } }),
-      ...(studioPool === 'true' && { StudioPool: { not: 'false' } }),
-      ...(fiveBedroom === 'true' && { FiveBedroom: { not: 'false' } }),
-      ...(threeBedroomPool === 'true' && { ThreeBedroomPool: { not: 'false' } }),
-      ...(twoAndHalfBedroom === 'true' && { TwoAndHalfBedroom: { not: 'false' } }),
-      ...(studio === 'true' && { Studio: { not: 'false' } }),
-      ...(oneAndHalfBedroom === 'true' && { OneAndHalfBedroom: { not: 'false' } }),
-      ...(threeAndHalfBedroom === 'true' && { ThreeAndHalfBedroom: { not: 'false' } }),
+      TwoBedroom: { contains: twoBedroom },
+      SixBedroom: { contains: sixBedroom },
+      OneBedroomPool: { contains: oneBedroomPool },
+      OneBedroom: { contains: oneBedroom },
+      FourBedroom: { contains: fourBedroom },
+      ThreeBedroom: { contains: threeBedroom },
+      MergedStudios: { contains: mergedStudios },
+      TwoBedroomPool: { contains: twoBedroomPool },
+      EightBedroom: { contains: eightBedroom },
+      NineBedroom: { contains: nineBedroom },
+      SevenBedroom: { contains: sevenBedroom },
+      StudioPool: { contains: studioPool },
+      FiveBedroom: { contains: fiveBedroom },
+      ThreeBedroomPool: { contains: threeBedroomPool },
+      TwoAndHalfBedroom: { contains: twoAndHalfBedroom },
+      Studio: { contains: studio },
+      OneAndHalfBedroom: { contains: oneAndHalfBedroom },
+      ThreeAndHalfBedroom: { contains: threeAndHalfBedroom },
 
     };
 
-    if (year) whereClause.Year = year;
-    if (quarter) whereClause.Quarter = quarter;
-    if (month) whereClause.Month = month;
+
 
     const projects = await this.prisma.projects.findMany({
       where: whereClause,

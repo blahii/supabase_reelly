@@ -20,25 +20,25 @@ model Projects {
   Year               String?    
   Quarter            String?  
   Month              String?  
-  TwoBedroom         Boolean
-  SixBedroom         Boolean
-  OneBedroomPool     Boolean
-  OneBedroom         Boolean
-  FourBedroom        Boolean
-  ThreeBedroom       Boolean
-  MergedStudios      Boolean
-  TwoBedroomPool     Boolean
-  EightBedroom       Boolean
-  NineBedroom        Boolean
-  SevenBedroom       Boolean
-  TwoBedroomPlusPool Boolean
-  StudioPool         Boolean
-  FiveBedroom        Boolean
-  ThreeBedroomPool   Boolean
-  TwoAndHalfBedroom  Boolean
-  Studio             Boolean
-  OneAndHalfBedroom  Boolean
-  ThreeAndHalfBedroom Boolean
+  TwoBedroom         String?  
+  SixBedroom         String?  
+  OneBedroomPool     String?  
+  OneBedroom         String?  
+  FourBedroom        String?  
+  ThreeBedroom       String?  
+  MergedStudios      String?  
+  TwoBedroomPool     String?  
+  EightBedroom       String?  
+  NineBedroom        String?  
+  SevenBedroom       String?  
+  TwoBedroomPlusPool String?  
+  StudioPool         String?  
+  FiveBedroom        String?  
+  ThreeBedroomPool   String?  
+  TwoAndHalfBedroom  String?  
+  Studio             String?  
+  OneAndHalfBedroom  String?  
+  ThreeAndHalfBedroom String?  
   Coordinates        String?
   Project_name       String?
   Developers_name    String?
