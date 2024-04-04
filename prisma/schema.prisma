@@ -37,6 +37,7 @@ model Projects {s
   Units_types         String?
   Display_All         String?
   TwoBedroom          String?   // 2 bedroom
+  Studio              String?   // Studio
   SixBedroom          String?   // 6 bedroom
   OneBedroomPool      String?   // 1 bedroom + pool
   OneBedroom          String?   // 1 bedroom
@@ -52,7 +53,6 @@ model Projects {s
   FiveBedroom         String?   // 5 bedroom
   ThreeBedroomPool    String?   // 3 bedroom + pool
   TwoAndHalfBedroom   String?   // 2,5 bedroom
-  Studio              String?   // Studio
   OneAndHalfBedroom   String?   // 1,5 bedroom
   ThreeAndHalfBedroom String?  // 3,5 bedroom
 }
