@@ -15,43 +15,44 @@ datasource db {
 }
 
 model Projects {s
-  id             String      @id
-  Completion_date String?
-  Coordinates    String?
-  Project_name    String?
-  Developers_name String?
-  Area_name       String?
-  Region         String?
-  Publish        Boolean?
-  Status         String?
-  Priority       String?
-  Floors         String?
-  Furnishing     String?
-  Unit_bedrooms   String?
-  Price_from_AED  String?    
-  Price_to_AED    String?   
-  Cover_URL    String?    
-  Year             String?
-  Quarter          String?    
-  Month            String?  
-  Units_types      String?
-  TwoBedroom         String?   // 2 bedroom
-  SixBedroom         String?   // 6 bedroom
-  OneBedroomPool     String?   // 1 bedroom + pool
-  OneBedroom         String?   // 1 bedroom
-  FourBedroom        String?   // 4 bedroom
-  ThreeBedroom       String?   // 3 bedroom
-  MergedStudios      String?   // Merged Studios
-  TwoBedroomPool     String?   // 2 bedroom + Pool
-  EightBedroom       String?   // 8 bedroom
-  NineBedroom        String?   // 9 bedroom
-  SevenBedroom       String?   // 7 bedroom
-  TwoBedroomPlusPool String?   // 2 bedroom + pool (повторяется, возможно, имелся в виду другой тип)
-  StudioPool         String?   // Studio + Pool
-  FiveBedroom        String?   // 5 bedroom
-  ThreeBedroomPool   String?   // 3 bedroom + pool
-  TwoAndHalfBedroom  String?   // 2,5 bedroom
-  Studio             String?   // Studio
-  OneAndHalfBedroom  String?   // 1,5 bedroom
+  id                String      @id
+  Completion_date   String?
+  Coordinates       String?
+  Project_name      String?
+  Developers_name   String?
+  Area_name         String?
+  Region            String?
+  Publish           Boolean?
+  Status            String?
+  Priority          String?
+  Floors            String?
+  Furnishing        String?
+  Unit_bedrooms     String?
+  Price_from_AED    String?    
+  Price_to_AED      String?   
+  Cover_URL         String?    
+  Year              String?
+  Quarter           String?    
+  Month             String?  
+  Units_types         String?
+  Display_All         String?
+  TwoBedroom          String?   // 2 bedroom
+  SixBedroom          String?   // 6 bedroom
+  OneBedroomPool      String?   // 1 bedroom + pool
+  OneBedroom          String?   // 1 bedroom
+  FourBedroom         String?   // 4 bedroom
+  ThreeBedroom        String?   // 3 bedroom
+  MergedStudios       String?   // Merged Studios
+  TwoBedroomPool      String?   // 2 bedroom + Pool
+  EightBedroom        String?   // 8 bedroom
+  NineBedroom         String?   // 9 bedroom
+  SevenBedroom        String?   // 7 bedroom
+  TwoBedroomPlusPool  String?   // 2 bedroom + pool (повторяется, возможно, имелся в виду другой тип)
+  StudioPool          String?   // Studio + Pool
+  FiveBedroom         String?   // 5 bedroom
+  ThreeBedroomPool    String?   // 3 bedroom + pool
+  TwoAndHalfBedroom   String?   // 2,5 bedroom
+  Studio              String?   // Studio
+  OneAndHalfBedroom   String?   // 1,5 bedroom
   ThreeAndHalfBedroom String?  // 3,5 bedroom
 }
