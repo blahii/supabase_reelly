@@ -33,7 +33,7 @@ model Projects {s
   Cover_URL         String?    
   Year              String?
   Quarter           String?    
-  Month             String?  
+  Month               String?  
   Units_types         String?
   Display_All         String?
   TwoBedroom          String?   // 2 bedroom
